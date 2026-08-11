@@ -1,0 +1,21 @@
+# ------------------------------------------------------------------
+# Documentos internos de Estudio Raíz: NO deben publicarse.
+# Las rutas van ancladas con "/" para que solo apliquen a la raíz
+# del repo y no afecten a los assets de web/.
+# ------------------------------------------------------------------
+/*.docx
+/*.doc
+/*.pdf
+/*.jpeg
+/*.jpg
+/Old/
+
+# Vercel
+.vercel/
+
+# Ajustes locales de Claude Code (propios de esta máquina)
+.claude/settings.local.json
+
+# Windows
+Thumbs.db
+Desktop.ini

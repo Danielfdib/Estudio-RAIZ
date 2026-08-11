@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
+     width="1000" height="1000" role="img" aria-labelledby="titulo descripcion">
+
+  <title id="titulo">Estudio Raíz — Isotipo</title>
+  <desc id="descripcion">Árbol estilizado y simétrico: raíces que representan protección y base sólida,
+  ramas y hojas que representan crecimiento y expansión.</desc>
+
+  <!-- ==================================================================
+       ESTUDIO RAÍZ · LOGO PRINCIPAL (versión fondo claro)
+       ==================================================================
+       viewBox ..... 1000 × 1000 (cuadrado perfecto)
+       Área útil ... 100 a 900 (padding de 100 px en los cuatro lados)
+       Simetría .... eje vertical en x = 500 · línea de tierra en y = 784
+       Paleta ...... #0D2B3E azul profundo · #5A6B3F verde oliva
+                     (manual de marca Estudio Raíz)
+       Estilo ...... estructura solo con trazos, hojas rellenas,
+                     stroke_linecap y stroke_linejoin redondeados
+       ================================================================== -->
+
+  <defs>
+    <!-- Hoja lanceolada unitaria: nace en (0,0), apunta hacia +X, largo 100 -->
+    <path id="hoja" d="M0 0 C 24 -25, 64 -27, 100 0 C 64 27, 24 25, 0 0 Z"/>
+
+    <!-- Las raíces se funden del azul del tronco al verde de las hojas -->
+    <linearGradient id="grad-raices" x1="0" y1="770" x2="0" y2="890" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0D2B3E"/>
+      <stop offset="1" stop-color="#5A6B3F"/>
+    </linearGradient>
+
+    <!-- La línea de tierra se desvanece hacia ambos extremos -->
+    <linearGradient id="grad-tierra" x1="106" y1="0" x2="894" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0"    stop-color="#5A6B3F" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="#5A6B3F" stop-opacity="0.85"/>
+      <stop offset="0.5"  stop-color="#0D2B3E" stop-opacity="1"/>
+      <stop offset="0.82" stop-color="#5A6B3F" stop-opacity="0.85"/>
+      <stop offset="1"    stop-color="#5A6B3F" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g id="estudio-raiz-isotipo" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- 1. RAÍCES · protección y base sólida.
+         Siete trazos curvos: uno central y tres pares simétricos,
+         de mayor a menor grosor desde el eje hacia afuera. -->
+    <g id="raices" stroke="url(#grad-raices)">
+      <path d="M500 780 C 500 812, 500 848, 500 878" stroke-width="8"/>
+
+      <path d="M498 780 C 490 814, 478 850, 462 886" stroke-width="8"/>
+      <path d="M502 780 C 510 814, 522 850, 538 886" stroke-width="8"/>
+
+      <path d="M496 782 C 474 810, 438 840, 396 862" stroke-width="7"/>
+      <path d="M504 782 C 526 810, 562 840, 604 862" stroke-width="7"/>
+
+      <path d="M494 784 C 462 798, 408 814, 344 822" stroke-width="6"/>
+      <path d="M506 784 C 538 798, 592 814, 656 822" stroke-width="6"/>
+    </g>
+
+    <!-- 2. LÍNEA DE TIERRA · separa la raíz de la copa -->
+    <g id="linea-tierra">
+      <path d="M106 784 L894 784" stroke="url(#grad-tierra)" stroke-width="6"/>
+    </g>
+
+    <!-- 3. TRONCO · dos trazos que convergen en punta hacia arriba,
+         lo que produce el afinado natural sin recurrir a rellenos. -->
+    <g id="tronco" stroke="#0D2B3E" stroke-width="13">
+      <path d="M494 782 C 495 620, 498 420, 500 288"/>
+      <path d="M506 782 C 505 620, 502 420, 500 288"/>
+    </g>
+
+    <!-- 4. RAMAS PRINCIPALES · el gesto que define la marca.
+         Dos curvas espejadas que nacen junto al tronco, se abren
+         hacia afuera y vuelven a cerrar sobre la línea de tierra. -->
+    <g id="ramas-principales" stroke="#0D2B3E" stroke-width="24">
+      <path d="M478 366 C 390 382, 252 470, 252 612 C 252 702, 342 762, 452 780"/>
+      <path d="M522 366 C 610 382, 748 470, 748 612 C 748 702, 658 762, 548 780"/>
+    </g>
+
+    <!-- 5. RAMAS SECUNDARIAS · tallos finos que nacen del tronco por
+         encima de las ramas principales y sostienen el par superior. -->
+    <g id="ramas-secundarias" stroke="#0D2B3E" stroke-width="7">
+      <path d="M500 348 C 468 344, 428 334, 386 320"/>
+      <path d="M500 348 C 532 344, 572 334, 614 320"/>
+    </g>
+
+    <!-- 6. HOJAS · crecimiento y expansión.
+         Siete hojas: una central sobre el tronco y tres pares
+         simétricos, decrecientes hacia el exterior. -->
+    <g id="hojas" fill="#5A6B3F" stroke="none">
+      <use href="#hoja" transform="translate(500 278) rotate(-90) scale(1.72)"/>
+
+      <use href="#hoja" transform="translate(386 320) rotate(220) scale(1.5)"/>
+      <use href="#hoja" transform="translate(614 320) rotate(-40) scale(1.5)"/>
+
+      <use href="#hoja" transform="translate(312 452) rotate(205) scale(1.42)"/>
+      <use href="#hoja" transform="translate(688 452) rotate(-25) scale(1.42)"/>
+
+      <use href="#hoja" transform="translate(256 553) rotate(192) scale(1.32)"/>
+      <use href="#hoja" transform="translate(744 553) rotate(-12) scale(1.32)"/>
+    </g>
+
+    <!-- 7. NERVADURAS (opcional) · detalle perceptible solo en tamaños
+         grandes. Se puede borrar este grupo entero sin afectar el resto. -->
+    <g id="nervaduras" stroke="#3E4A2C" stroke-opacity="0.34" stroke-width="4">
+      <path d="M14 0 L86 0" transform="translate(500 278) rotate(-90) scale(1.72)"/>
+      <path d="M14 0 L86 0" transform="translate(386 320) rotate(220) scale(1.5)"/>
+      <path d="M14 0 L86 0" transform="translate(614 320) rotate(-40) scale(1.5)"/>
+      <path d="M14 0 L86 0" transform="translate(312 452) rotate(205) scale(1.42)"/>
+      <path d="M14 0 L86 0" transform="translate(688 452) rotate(-25) scale(1.42)"/>
+      <path d="M14 0 L86 0" transform="translate(256 553) rotate(192) scale(1.32)"/>
+      <path d="M14 0 L86 0" transform="translate(744 553) rotate(-12) scale(1.32)"/>
+    </g>
+  </g>
+</svg>

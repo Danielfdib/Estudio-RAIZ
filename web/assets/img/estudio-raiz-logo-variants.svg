@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2240"
+     width="2000" height="2240" role="img" aria-labelledby="t d">
+
+  <title id="t">Estudio Raíz — Variantes del isotipo</title>
+  <desc id="d">Cuatro variantes del isotipo de Estudio Raíz: fondo claro, fondo oscuro,
+  versión favicon simplificada y versión monocromo azul.</desc>
+
+  <!-- ==================================================================
+       ESTUDIO RAÍZ · HOJA DE VARIANTES
+       ==================================================================
+       La geometría se define una sola vez en <defs> y se reutiliza con
+       <use>. El color se aplica desde cada <use>:
+         · la estructura usa stroke="currentColor"  →  atributo color
+         · las hojas no declaran fill               →  atributo fill
+       Variantes:
+         v1  fondo claro    #0D2B3E + #5A6B3F
+         v2  fondo oscuro   #FFFFFF + #9BC9B5
+         v3  favicon        trazos engrosados, legible a 32 px
+         v4  monocromo azul #0D2B3E (papelería, sellos, grabado)
+       ================================================================== -->
+
+  <defs>
+    <!-- Hoja lanceolada unitaria: nace en (0,0), apunta hacia +X, largo 100 -->
+    <path id="v-hoja" d="M0 0 C 24 -25, 64 -27, 100 0 C 64 27, 24 25, 0 0 Z"/>
+
+    <!-- ============ GEOMETRÍA COMPLETA ============ -->
+
+    <!-- Estructura: raíces, tierra, tronco y ramas -->
+    <g id="v-estructura" fill="none" stroke="currentColor"
+       stroke-linecap="round" stroke-linejoin="round">
+
+      <g id="v-raices">
+        <path d="M500 780 C 500 812, 500 848, 500 878" stroke-width="8"/>
+        <path d="M498 780 C 490 814, 478 850, 462 886" stroke-width="8"/>
+        <path d="M502 780 C 510 814, 522 850, 538 886" stroke-width="8"/>
+        <path d="M496 782 C 474 810, 438 840, 396 862" stroke-width="7"/>
+        <path d="M504 782 C 526 810, 562 840, 604 862" stroke-width="7"/>
+        <path d="M494 784 C 462 798, 408 814, 344 822" stroke-width="6"/>
+        <path d="M506 784 C 538 798, 592 814, 656 822" stroke-width="6"/>
+      </g>
+
+      <g id="v-tierra">
+        <path d="M106 784 L894 784" stroke-width="6" stroke-opacity="0.55"/>
+      </g>
+
+      <g id="v-tronco" stroke-width="13">
+        <path d="M494 782 C 495 620, 498 420, 500 288"/>
+        <path d="M506 782 C 505 620, 502 420, 500 288"/>
+      </g>
+
+      <g id="v-ramas" stroke-width="24">
+        <path d="M478 366 C 390 382, 252 470, 252 612 C 252 702, 342 762, 452 780"/>
+        <path d="M522 366 C 610 382, 748 470, 748 612 C 748 702, 658 762, 548 780"/>
+      </g>
+
+      <g id="v-ramas-sec" stroke-width="7">
+        <path d="M500 348 C 468 344, 428 334, 386 320"/>
+        <path d="M500 348 C 532 344, 572 334, 614 320"/>
+      </g>
+    </g>
+
+    <!-- Hojas: sin atributo fill para que hereden el del <use> -->
+    <g id="v-hojas" stroke="none">
+      <use href="#v-hoja" transform="translate(500 278) rotate(-90) scale(1.72)"/>
+      <use href="#v-hoja" transform="translate(386 320) rotate(220) scale(1.5)"/>
+      <use href="#v-hoja" transform="translate(614 320) rotate(-40) scale(1.5)"/>
+      <use href="#v-hoja" transform="translate(312 452) rotate(205) scale(1.42)"/>
+      <use href="#v-hoja" transform="translate(688 452) rotate(-25) scale(1.42)"/>
+      <use href="#v-hoja" transform="translate(256 553) rotate(192) scale(1.32)"/>
+      <use href="#v-hoja" transform="translate(744 553) rotate(-12) scale(1.32)"/>
+    </g>
+
+    <!-- ============ GEOMETRÍA SIMPLIFICADA (FAVICON) ============
+         Se quitan las ramas secundarias y el par de hojas medio, y se
+         engrosan todos los trazos para que el dibujo sobreviva a 32 px. -->
+
+    <g id="v-estructura-fav" fill="none" stroke="currentColor"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M500 782 C 500 818, 500 852, 500 884" stroke-width="20"/>
+      <path d="M492 782 C 470 812, 432 842, 388 862" stroke-width="18"/>
+      <path d="M508 782 C 530 812, 568 842, 612 862" stroke-width="18"/>
+      <path d="M150 784 L850 784" stroke-width="14" stroke-opacity="0.55"/>
+      <path d="M500 782 L500 296" stroke-width="30"/>
+      <path d="M470 352 C 376 372, 232 468, 232 616 C 232 710, 330 768, 446 784" stroke-width="42"/>
+      <path d="M530 352 C 624 372, 768 468, 768 616 C 768 710, 670 768, 554 784" stroke-width="42"/>
+    </g>
+
+    <g id="v-hojas-fav" stroke="none">
+      <use href="#v-hoja" transform="translate(500 286) rotate(-90) scale(1.95)"/>
+      <use href="#v-hoja" transform="translate(466 356) rotate(218) scale(1.72)"/>
+      <use href="#v-hoja" transform="translate(534 356) rotate(-38) scale(1.72)"/>
+      <use href="#v-hoja" transform="translate(240 566) rotate(194) scale(1.55)"/>
+      <use href="#v-hoja" transform="translate(760 566) rotate(-14) scale(1.55)"/>
+    </g>
+  </defs>
+
+  <!-- ================= v1 · FONDO CLARO ================= -->
+  <g id="variante-1-fondo-claro">
+    <rect x="0" y="0" width="1000" height="1000" fill="#F2EFE7"/>
+    <use href="#v-estructura" color="#0D2B3E"/>
+    <use href="#v-hojas" fill="#5A6B3F"/>
+    <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+          font-size="34" letter-spacing="4" fill="#46596A">v1 · FONDO CLARO</text>
+  </g>
+
+  <!-- ================= v2 · FONDO OSCURO ================= -->
+  <g id="variante-2-fondo-oscuro" transform="translate(1000 0)">
+    <rect x="0" y="0" width="1000" height="1000" fill="#0D2B3E"/>
+    <use href="#v-estructura" color="#FFFFFF"/>
+    <use href="#v-hojas" fill="#9BC9B5"/>
+    <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+          font-size="34" letter-spacing="4" fill="#46596A">v2 · FONDO OSCURO</text>
+  </g>
+
+  <!-- ================= v3 · FAVICON (simplificado) ================= -->
+  <g id="variante-3-favicon" transform="translate(0 1120)">
+    <rect x="0" y="0" width="1000" height="1000" fill="#F2EFE7"/>
+    <use href="#v-estructura-fav" color="#0D2B3E"/>
+    <use href="#v-hojas-fav" fill="#5A6B3F"/>
+    <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+          font-size="34" letter-spacing="4" fill="#46596A">v3 · FAVICON</text>
+  </g>
+
+  <!-- ================= v4 · MONOCROMO AZUL ================= -->
+  <g id="variante-4-monocromo" transform="translate(1000 1120)">
+    <rect x="0" y="0" width="1000" height="1000" fill="#FFFFFF"/>
+    <use href="#v-estructura" color="#0D2B3E"/>
+    <use href="#v-hojas" fill="#0D2B3E"/>
+    <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+          font-size="34" letter-spacing="4" fill="#46596A">v4 · MONOCROMO AZUL</text>
+  </g>
+</svg>
