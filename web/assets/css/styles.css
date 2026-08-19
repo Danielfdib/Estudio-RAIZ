@@ -11,13 +11,14 @@
    06. Header y navegación
    07. Hero
    08. Secciones y tarjetas
-   09. Búsqueda de marca
-   10. Formulario
-   11. Casos de éxito
-   12. FAQ
-   13. Footer
-   14. Animaciones (reveal)
-   15. Responsive
+   09. Quiénes somos (equipo y proceso)
+   10. Búsqueda de marca
+   11. Formulario
+   12. Cascada de consecuencias
+   13. FAQ
+   14. Footer
+   15. Animaciones (reveal)
+   16. Responsive
    =================================================================== */
 
 
@@ -584,20 +585,23 @@ button, input, textarea, select {
 .card-ico {
   display: grid;
   place-items: center;
-  width: 50px; height: 50px;
+  width: 60px; height: 60px;
   margin-bottom: 1.15rem;
-  border-radius: 13px;
+  border-radius: 16px;
   background: linear-gradient(145deg, rgba(127,168,134,.20), rgba(127,168,134,.07));
   color: var(--green-deep);
 }
-.card-ico svg {
-  width: 25px; height: 25px;
+/* Los íconos de servicio usan viewBox de 60 unidades, así que el
+   stroke-width va en esa escala y no en la de 24. */
+.card-ico .svc-ico {
+  width: 34px; height: 34px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.6;
+  stroke-width: 3.1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.card-ico .svc-ico circle { fill: currentColor; stroke: none; }
 
 .card h3 {
   font-size: var(--fs-h3);
@@ -676,7 +680,160 @@ button, input, textarea, select {
 
 
 /* ==================================================================
-   09. BÚSQUEDA DE MARCA
+   09. QUIÉNES SOMOS
+   =================================================================== */
+.team {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.2rem, .8rem + 1.6vw, 2rem);
+}
+
+.member {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+.member:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.member--navy  { border-top-color: var(--navy); }
+.member--green { border-top-color: var(--green); }
+
+.member-photo {
+  width: clamp(112px, 8rem + 2vw, 148px);
+  /* height:auto es imprescindible: sin él gana el atributo height="640"
+     del HTML y el aspect-ratio queda sin efecto. */
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.15rem;
+  display: block;
+  background: var(--gray);
+  box-shadow: 0 0 0 4px var(--white), 0 0 0 5px var(--line);
+  transition: transform var(--t-base);
+}
+.member:hover .member-photo { transform: scale(1.04); }
+
+.member-name {
+  font-size: var(--fs-h3);
+  margin-bottom: .2rem;
+}
+.member-role {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  margin-bottom: .9rem;
+}
+.member--navy  .member-role { color: var(--navy-soft); }
+.member--green .member-role { color: var(--green-deep); }
+
+.member-bio {
+  font-size: var(--fs-sm);
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.72;
+  max-width: 40ch;
+  margin: 0 auto 1.3rem;
+}
+
+.member-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--navy);
+  transition: color var(--t-fast);
+}
+.member-link:hover { color: var(--green-deep); }
+.member-in {
+  width: 19px; height: 19px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* --- Proceso de 4 pasos --- */
+.process-wrap {
+  margin-top: clamp(2.4rem, 1.8rem + 2.6vw, 4rem);
+  padding-top: clamp(1.8rem, 1.3rem + 1.8vw, 2.8rem);
+  border-top: 1px solid var(--line);
+}
+.process-title {
+  font-size: var(--fs-h3);
+  text-align: center;
+  margin-bottom: clamp(1.4rem, 1rem + 1.4vw, 2.2rem);
+}
+
+.process {
+  --pdot: 52px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.process-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--pdot) 1fr;
+  align-items: start;
+  gap: 1rem;
+  padding-bottom: 1.7rem;
+  text-align: left;
+}
+.process-step:last-child { padding-bottom: 0; }
+
+/* Conector: vertical mientras la lista está apilada */
+.process-step::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--pdot) / 2 - 1px);
+  top: var(--pdot);
+  bottom: 0;
+  width: 2px;
+  background: var(--line);
+}
+.process-step:last-child::before { display: none; }
+
+.process-dot {
+  position: relative;
+  z-index: 1;
+  width: var(--pdot);
+  height: var(--pdot);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+}
+/* Alternancia navy → green → navy → green */
+.process-step:nth-child(odd)  .process-dot { background: var(--navy); }
+.process-step:nth-child(even) .process-dot { background: var(--green); }
+
+.process-step h4 {
+  font-size: 1rem;
+  margin-bottom: .3rem;
+  padding-top: .75rem;
+}
+.process-step p {
+  font-size: var(--fs-sm);
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+
+/* ==================================================================
+   10. BÚSQUEDA DE MARCA
    =================================================================== */
 .search-box { margin-top: -.5rem; }
 
@@ -824,7 +981,7 @@ button, input, textarea, select {
 
 
 /* ==================================================================
-   10. FORMULARIO
+   11. FORMULARIO
    =================================================================== */
 .contact-grid {
   display: grid;
@@ -994,96 +1151,101 @@ button, input, textarea, select {
 
 
 /* ==================================================================
-   11. CASOS DE ÉXITO
+   12. CASCADA DE CONSECUENCIAS
+   ------------------------------------------------------------------
+   Lista ordenada con un rail izquierdo: número en círculo y una línea
+   que lo une con el siguiente. La línea es el argumento de la sección
+   (cada eslabón arrastra al que sigue), así que es decorativa pero
+   deliberada.
    =================================================================== */
-.case {
+.cascade {
+  --dot: 46px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cascade-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--dot) 1fr;
+  gap: clamp(.9rem, .6rem + 1.2vw, 1.5rem);
+  padding-bottom: clamp(1.7rem, 1.2rem + 1.4vw, 2.6rem);
+}
+.cascade-step:last-child { padding-bottom: 0; }
+
+/* Conector vertical entre un eslabón y el siguiente */
+.cascade-step::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--dot) / 2 - 1px);
+  top: var(--dot);
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--green-light), rgba(127, 168, 134, .22));
+}
+.cascade-step:last-child::before { display: none; }
+
+.cascade-num {
+  position: relative;
+  z-index: 1;
+  width: var(--dot);
+  height: var(--dot);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
   background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: clamp(1.5rem, 1.1rem + 1.2vw, 2.1rem);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--t-base), box-shadow var(--t-base);
-}
-.case:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-.case-tag {
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--green-deep);
-  margin-bottom: .7rem;
-}
-.case-name {
-  font-size: var(--fs-h3);
-  margin-bottom: .15rem;
-}
-.case-role {
-  font-size: var(--fs-xs);
-  color: var(--text-mute);
-}
-
-.case-metric {
-  margin: 1.3rem 0;
-  padding: 1.15rem 1.2rem;
-  background: linear-gradient(145deg, rgba(127,168,134,.16), rgba(127,168,134,.05));
-  border-radius: var(--radius-sm);
-  text-align: center;
-}
-.metric-value {
-  display: block;
+  border: 1.5px solid var(--green-light);
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 1.5rem + 2vw, 2.7rem);
+  font-size: .95rem;
   font-weight: 700;
-  line-height: 1;
-  color: var(--green);
-  letter-spacing: -.02em;
+  color: var(--green-deep);
   font-variant-numeric: tabular-nums;
 }
-.metric-label {
-  display: block;
-  margin-top: .35rem;
-  font-size: var(--fs-xs);
-  color: var(--text-soft);
-}
 
-.case-detail {
-  margin: 0;
-  display: grid;
-  gap: .2rem;
+.cascade-body { padding-top: .5rem; }
+.cascade-body h3 {
+  font-size: var(--fs-h3);
+  margin-bottom: .55rem;
 }
-.case-detail dt {
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--navy);
-  margin-top: .85rem;
-}
-.case-detail dt:first-child { margin-top: 0; }
-.case-detail dd {
-  margin: 0;
+.cascade-body p {
   font-size: var(--fs-sm);
   color: var(--text-soft);
   font-weight: 300;
-  line-height: 1.68;
+  line-height: 1.78;
+  max-width: 62ch;
+}
+.cascade-body strong { color: var(--navy); font-weight: 600; }
+.cascade-body a {
+  color: var(--green-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cascade-body a:hover { color: var(--navy); }
+
+.cascade-close {
+  margin-top: clamp(2rem, 1.4rem + 2vw, 3rem);
+  padding-top: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.cascade-close p {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  color: var(--navy);
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 0 auto 1.4rem;
 }
 
-.cases-note {
-  margin-top: clamp(1.6rem, 1.2rem + 1vw, 2.4rem);
-  text-align: center;
-  font-size: var(--fs-xs);
-  color: var(--text-mute);
+@media (max-width: 480px) {
+  .cascade { --dot: 38px; }
+  .cascade-num { font-size: .85rem; }
 }
 
 
 /* ==================================================================
-   12. FAQ
+   13. FAQ
    =================================================================== */
 .faq {
   border-top: 1px solid var(--line);
@@ -1164,7 +1326,7 @@ button, input, textarea, select {
 
 
 /* ==================================================================
-   13. FOOTER
+   14. FOOTER
    =================================================================== */
 .site-footer {
   background: var(--navy);
@@ -1285,7 +1447,7 @@ button, input, textarea, select {
 
 
 /* ==================================================================
-   14. ANIMACIONES (reveal on scroll)
+   15. ANIMACIONES (reveal on scroll)
    =================================================================== */
 .reveal {
   opacity: 0;
@@ -1315,12 +1477,13 @@ button, input, textarea, select {
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
-  .btn:hover, .card:hover, .case:hover, .socials a:hover { transform: none; }
+  .btn:hover, .card:hover, .socials a:hover, .member:hover { transform: none; }
+  .member:hover .member-photo { transform: none; }
 }
 
 
 /* ==================================================================
-   15. RESPONSIVE
+   16. RESPONSIVE
    =================================================================== */
 
 /* ---- Mobile: menú desplegable + CTA flotante ---- */
@@ -1387,6 +1550,9 @@ button, input, textarea, select {
   .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .diff-list { grid-template-columns: repeat(2, 1fr); }
   .result-steps { grid-template-columns: repeat(2, 1fr); }
+
+  /* Los dos socios, lado a lado */
+  .team { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---- Desktop ---- */
@@ -1396,6 +1562,30 @@ button, input, textarea, select {
   .contact-intro { position: sticky; top: 108px; }
   .footer-grid { grid-template-columns: 1.5fr 1fr 1.2fr; }
   .br-desktop { display: inline; }
+
+  /* El proceso pasa de columna apilada a fila de cuatro */
+  .process {
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, .5rem + 1.4vw, 1.8rem);
+  }
+  .process-step {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: .2rem;
+    padding-bottom: 0;
+  }
+  /* El conector ahora es horizontal: del borde del círculo al siguiente */
+  .process-step::before {
+    left: calc(50% + var(--pdot) / 2);
+    right: calc(-50% + var(--pdot) / 2);
+    top: calc(var(--pdot) / 2 - 1px);
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+  .process-step h4 { padding-top: .85rem; }
+  .process-step p { max-width: 24ch; }
 }
 
 @media (max-width: 979px) {

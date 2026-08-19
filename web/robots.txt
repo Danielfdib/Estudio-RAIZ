@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Herramienta interna del estudio y API de consulta: no son contenido
+# público del sitio, no tiene sentido que los buscadores los indexen.
+Disallow: /herramientas/
+Disallow: /api/

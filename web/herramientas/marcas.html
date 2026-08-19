@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es-AR" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consulta de marcas INPI — Estudio Raíz</title>
+
+  <!-- Herramienta de uso interno: no es contenido público del sitio. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0D2B3E">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" sizes="180x180">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!-- styles.css entra por los tokens de marca, el reset y .btn/.spinner:
+       así la paleta se sigue editando en un único lugar. -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/herramientas.css">
+</head>
+<body class="tool-body">
+
+<header class="tool-header">
+  <div class="wrap tool-header__in">
+    <a class="tool-brand" href="../index.html">
+      <img src="../assets/img/logo-transparent.png" alt="" width="34" height="34">
+      <span>
+        <strong>Estudio Raíz</strong>
+        <small>Consulta de marcas · INPI</small>
+      </span>
+    </a>
+    <span class="tool-tag">Uso interno</span>
+  </div>
+</header>
+
+<main class="wrap tool-main">
+
+  <!-- =============================================================
+       Formulario de búsqueda
+       ============================================================= -->
+  <form id="form" class="panel" autocomplete="off">
+    <div class="grid">
+
+      <div class="field field--wide">
+        <label for="q">Denominación</label>
+        <div class="field-row">
+          <input type="text" id="q" name="q" placeholder="Ej.: raíz, coca cola, alfajor…"
+                 spellcheck="false">
+          <select id="modo" name="modo" aria-label="Modo de coincidencia">
+            <option value="contiene">contiene</option>
+            <option value="empieza">empieza con</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="clase">Clases de Niza</label>
+        <input type="text" id="clase" name="clase" list="clasesNiza"
+               placeholder="todas — o 35, 41" spellcheck="false">
+        <small>Hasta 4, separadas por coma. Vacío = todas.</small>
+      </div>
+
+      <div class="field field--wide">
+        <label for="titular">Titular</label>
+        <div class="field-row">
+          <input type="text" id="titular" name="titular"
+                 placeholder="Apellido, razón social o CUIT" spellcheck="false">
+          <select id="modoTitular" name="modoTitular" aria-label="Modo de coincidencia del titular">
+            <option value="contiene">contiene</option>
+            <option value="empieza">empieza con</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="estado">Estado</label>
+        <select id="estado" name="estado">
+          <option value="">Todos</option>
+          <option value="C">Concedida</option>
+          <option value="E">En trámite</option>
+          <option value="A">Abandonada</option>
+          <option value="CA">Caduca</option>
+          <option value="N">Denegada</option>
+          <option value="D">Desistida</option>
+          <option value="NU">Nula</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="desdeIngreso">Ingreso desde</label>
+        <input type="date" id="desdeIngreso" name="desdeIngreso">
+      </div>
+
+      <div class="field">
+        <label for="hastaIngreso">Ingreso hasta</label>
+        <input type="date" id="hastaIngreso" name="hastaIngreso">
+      </div>
+
+      <div class="field">
+        <label for="acta">Acta puntual</label>
+        <input type="number" id="acta" name="acta" placeholder="Ej.: 1239900">
+        <small>Si la completás, ignora el resto.</small>
+      </div>
+
+      <div class="field field--checks">
+        <label class="check">
+          <input type="checkbox" id="foneticas" name="foneticas" checked>
+          <span>Variantes fonéticas
+            <small>Consulta también RAIS, RAYZ, RAYS…</small>
+          </span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="vigentes" name="vigentes">
+          <span>Sólo vigentes
+            <small>Excluye caducas, abandonadas y denegadas.</small>
+          </span>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="panel__actions">
+      <button type="submit" class="btn btn--primary" id="btnBuscar">
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-label">Buscar</span>
+      </button>
+      <button type="button" class="btn btn--ghost btn--sm" id="btnLimpiar">Limpiar</button>
+      <button type="button" class="btn btn--ghost btn--sm" id="btnCsv" disabled>
+        Descargar CSV
+      </button>
+      <span class="panel__hint" id="hint"></span>
+    </div>
+  </form>
+
+  <!-- Clases de Niza: títulos resumidos, como ayuda para elegir.
+       No reemplazan el listado oficial de productos y servicios. -->
+  <datalist id="clasesNiza"></datalist>
+
+  <!-- =============================================================
+       Resultados
+       ============================================================= -->
+  <section id="salida" hidden aria-live="polite">
+
+    <div class="resumen" id="resumen"></div>
+
+    <div class="avisos" id="avisos" hidden></div>
+
+    <div class="tabla-cab">
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar por riesgo">
+        <button type="button" class="chip is-on" data-riesgo="todos">Todos</button>
+        <button type="button" class="chip" data-riesgo="alto">Riesgo alto</button>
+        <button type="button" class="chip" data-riesgo="medio">Medio</button>
+        <button type="button" class="chip" data-riesgo="bajo">Bajo</button>
+      </div>
+      <p class="tabla-cab__meta" id="meta"></p>
+    </div>
+
+    <div class="tabla-scroll">
+      <table class="tabla" id="tabla">
+        <thead>
+          <tr>
+            <th>Riesgo</th>
+            <th>Acta</th>
+            <th>Denominación</th>
+            <th>Titular</th>
+            <th>Cl.</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Ingreso</th>
+            <th>Vence</th>
+            <th>Coincidencia</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="paginado" id="paginado" hidden>
+      <button type="button" class="btn btn--ghost btn--sm" id="btnPrev">← Anteriores</button>
+      <span id="paginaInfo"></span>
+      <button type="button" class="btn btn--ghost btn--sm" id="btnNext">Siguientes →</button>
+    </div>
+  </section>
+
+  <div class="estado-vacio" id="vacio" hidden></div>
+
+  <!-- =============================================================
+       Advertencia legal — permanente, no se oculta
+       ============================================================= -->
+  <aside class="disclaimer">
+    <h2>Qué es y qué no es esta consulta</h2>
+    <p>
+      Los datos salen de la base pública del INPI en tiempo real. La búsqueda del
+      organismo es <strong>literal</strong>: encuentra cadenas de texto, no sonidos.
+      Las variantes fonéticas que agrega esta herramienta amplían la red, pero
+      <strong>no equivalen a la búsqueda fonética oficial</strong>, que es arancelada
+      y se pide al INPI por separado.
+    </p>
+    <p>
+      Además, el INPI devuelve los resultados ordenados por número de acta y con
+      tope de filas: en denominaciones muy comunes puede quedar material afuera.
+      Sirve para <strong>descartar rápido</strong> y para preparar un informe, no
+      para dar una respuesta definitiva a un cliente.
+    </p>
+  </aside>
+
+</main>
+
+<!-- El detalle de un expediente en el portal del INPI sólo se abre por POST,
+     no tiene URL directa. Este formulario oculto lo replica. -->
+<form id="frmDetalle" method="post" target="_blank"
+      action="https://portaltramites.inpi.gob.ar/MarcasConsultas/Resultado">
+  <input type="hidden" name="acta" value="">
+</form>
+
+<script src="../assets/js/herramientas-marcas.js"></script>
+</body>
+</html>

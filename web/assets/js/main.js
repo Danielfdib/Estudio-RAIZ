@@ -7,10 +7,9 @@
    01. Utilidades
    02. Navegación
    03. Reveal on scroll
-   04. Contadores de métricas
-   05. Búsqueda de marca (simulada)
-   06. Formulario de leads
-   07. CTA flotante y varios
+   04. Búsqueda de marca (simulada)
+   05. Formulario de leads
+   06. CTA flotante y varios
    =================================================================== */
 (function () {
   'use strict';
@@ -126,59 +125,25 @@
 
 
   /* ================================================================
-     04. CONTADORES DE MÉTRICAS
-     ================================================================= */
-  var counters = $$('.metric-value[data-count]');
-
-  var runCounter = function (el) {
-    var target = parseInt(el.dataset.count, 10) || 0;
-    var prefix = el.dataset.prefix || '';
-    var suffix = el.dataset.suffix || '';
-    var duration = 1400;
-    var start = null;
-
-    var step = function (ts) {
-      if (start === null) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      // easeOutCubic
-      var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = prefix + Math.round(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  if (counters.length) {
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-      // Los valores finales ya están en el HTML: no hacemos nada.
-    } else {
-      var counterObserver = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          runCounter(entry.target);
-          obs.unobserve(entry.target);
-        });
-      }, { threshold: 0.6 });
-
-      counters.forEach(function (el) {
-        el.textContent = (el.dataset.prefix || '') + '0' + (el.dataset.suffix || '');
-        counterObserver.observe(el);
-      });
-    }
-  }
-
-
-  /* ================================================================
-     05. BÚSQUEDA DE MARCA (SIMULADA)
+     04. BÚSQUEDA DE MARCA (SIMULADA)
      ----------------------------------------------------------------
      IMPORTANTE: esto NO consulta la base del INPI. Es una simulación
      educativa y determinística: el mismo nombre devuelve siempre el
      mismo resultado, para que la demo sea coherente.
 
-     Cuando exista un servicio real, reemplazá `simulateLookup()` por
-     una llamada fetch() al backend manteniendo la misma forma de
-     respuesta: { status: 'ok' | 'warn', name: string }
+     Desde que existe /api/marcas se podría consultar el INPI de verdad,
+     pero sigue simulado a propósito: soltarle a un visitante la lista
+     cruda de antecedentes lo invita a sacar conclusiones solo, que es
+     justo lo contrario de lo que el estudio quiere. La consulta real
+     vive en /herramientas/marcas, para uso interno.
+
+     Si algún día se conecta, que sea manteniendo esta forma de
+     respuesta —{ status: 'ok' | 'warn', name: string }— y mostrando el
+     semáforo, no la tabla:
+
+       var r = await fetch('/api/marcas?q=' + encodeURIComponent(nombre));
+       var d = await r.json();
+       return { status: d.resumen.riesgo === 'bajo' ? 'ok' : 'warn', name: nombre };
      ================================================================= */
   var searchForm  = $('#searchForm');
   var brandInput  = $('#brandName');
@@ -338,7 +303,7 @@
 
 
   /* ================================================================
-     06. FORMULARIO DE LEADS
+     05. FORMULARIO DE LEADS
      ================================================================= */
   var leadForm    = $('#leadForm');
   var leadSubmit  = $('#leadSubmit');
@@ -509,7 +474,7 @@
 
 
   /* ================================================================
-     07. CTA FLOTANTE Y VARIOS
+     06. CTA FLOTANTE Y VARIOS
      ================================================================= */
   var ctaFloat = $('#ctaFloat');
   var hero     = $('#inicio');

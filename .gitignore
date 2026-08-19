@@ -6,9 +6,17 @@
 /*.docx
 /*.doc
 /*.pdf
+/*.pptx
+/*.ppt
 /*.jpeg
 /*.jpg
 /Old/
+
+# Material de origen: CVs con datos personales, fotos originales sin
+# recortar y fotos de stock que NO se usan en el sitio. Las versiones
+# publicables viven en web/assets/img/.
+/Quienes somos/
+/Fotos a modo ejemplo/
 
 # Vercel
 .vercel/
