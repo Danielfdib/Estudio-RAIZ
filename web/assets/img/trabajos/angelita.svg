@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Angelita · Caja y Stock">
+  <rect width="512" height="512" rx="104" fill="#0B283D"/>
+  <!-- toldo -->
+  <path d="M104 160 L 136 100 H 376 L 408 160 Z" fill="#F9F6F1"/>
+  <path d="M104 160 Q 130 196 156 160 Q 182 196 208 160 Q 234 196 260 160 Q 286 196 312 160 Q 338 196 364 160 Q 390 196 408 160" fill="#C8643B"/>
+  <path d="M168 100 L 156 160 M216 100 L 208 160 M296 100 L 312 160 M344 100 L 364 160" stroke="#C8643B" stroke-width="14"/>
+  <path d="M256 100 V 160" stroke="#C8643B" stroke-width="14"/>
+  <!-- local -->
+  <rect x="128" y="196" width="256" height="216" rx="16" fill="#F9F6F1" opacity=".14"/>
+  <!-- caja / barras de stock -->
+  <rect x="164" y="300" width="40" height="80" rx="8" fill="#7FA886"/>
+  <rect x="224" y="264" width="40" height="116" rx="8" fill="#F9F6F1"/>
+  <rect x="284" y="232" width="40" height="148" rx="8" fill="#7FA886"/>
+  <path d="M148 396 H 364" stroke="#F9F6F1" stroke-width="10" stroke-linecap="round"/>
+  <g transform="translate(420 440) rotate(-90) scale(.42)"><path d="M0 0 C 24 -25, 64 -27, 100 0 C 64 27, 24 25, 0 0 Z" fill="#7FA886"/></g>
+</svg>

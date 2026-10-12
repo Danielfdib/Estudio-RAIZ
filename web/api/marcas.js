@@ -337,7 +337,7 @@ async function pedirInpi(ruta, campos) {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'X-Requested-With': 'XMLHttpRequest',
         'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'User-Agent': 'EstudioRaiz-MarcasBot/1.0 (+https://estudioraiz.com.ar)'
+        'User-Agent': 'EstudioRaiz-MarcasBot/1.0 (+https://estudio-raiz.vercel.app)'
       },
       body: cuerpo.toString()
     });

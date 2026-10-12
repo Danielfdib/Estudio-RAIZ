@@ -1,0 +1,80 @@
+/* Páginas legales (privacidad y términos) */
+:root {
+  --navy: #0B283D;
+  --green: #555B37;
+  --cream: #F9F6F1;
+  --text: #0B283D;
+  --text-soft: #46596A;
+  --line: #E2E0D8;
+  --bg: #FFFFFF;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #F2EFE7;
+    --text-soft: #B9C2C9;
+    --line: #23415A;
+    --bg: #0B283D;
+    --cream: #071C2A;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+a { color: inherit; text-underline-offset: 2px; }
+.legal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--line);
+  background: var(--cream);
+}
+.legal-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.legal-brand img { border-radius: 8px; }
+.legal-back { font-size: .9rem; color: var(--text-soft); }
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+.legal h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  line-height: 1.2;
+  margin: 0 0 .3rem;
+}
+.legal h2 {
+  font-size: 1.1rem;
+  margin: 2rem 0 .5rem;
+}
+.legal-meta { color: var(--text-soft); font-size: .9rem; margin-top: 0; }
+.legal ul { padding-left: 1.2rem; }
+.legal li { margin-bottom: .5rem; }
+.legal-note {
+  font-size: .85rem;
+  color: var(--text-soft);
+  border-left: 3px solid var(--green);
+  padding-left: .9rem;
+}
+.legal-foot {
+  border-top: 1px solid var(--line);
+  padding: 1.2rem clamp(1rem, 4vw, 2rem);
+  text-align: center;
+  font-size: .85rem;
+  color: var(--text-soft);
+}

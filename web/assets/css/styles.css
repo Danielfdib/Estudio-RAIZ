@@ -26,31 +26,31 @@
    01. TOKENS
    ------------------------------------------------------------------
    Paleta oficial del manual de marca de Estudio Raíz:
-       #0D2B3E  azul profundo   · estructura, texto, fondos densos
-       #5A6B3F  verde oliva     · hojas, acentos, detalles
-       #F2EFE7  crema           · fondos suaves
+       #0B283D  azul profundo   · estructura, texto, fondos densos
+       #555B37  verde oliva     · hojas, acentos, detalles
+       #F9F6F1  crema           · fondos suaves
    Los tonos #1B3A52 y #7FA886 se conservan como variantes claras
    (hover, bordes y hojas sobre fondo oscuro).
    Para recolorear todo el sitio, editá solo este bloque.
    =================================================================== */
 :root {
   /* Marca — manual */
-  --navy:        #0D2B3E;   /* azul profundo (principal) */
+  --navy:        #0B283D;   /* azul profundo (principal) */
   --navy-deep:   #071C2A;   /* refuerzo para fondos y hover */
   --navy-soft:   #1B3A52;   /* azul claro de apoyo */
-  --green:       #5A6B3F;   /* verde oliva (principal) */
+  --green:       #555B37;   /* verde oliva (principal) */
   --green-deep:  #45532F;   /* oliva oscuro */
   --green-light: #7FA886;   /* verde salvia, para fondos oscuros */
 
   /* Neutros */
   --white:       #FFFFFF;
-  --cream:       #F2EFE7;   /* crema del manual */
+  --cream:       #F9F6F1;   /* crema del manual */
   --gray:        #F5F5F5;
   --line:        #E2E0D8;
   --line-dark:   rgba(255,255,255,.14);
 
   /* Texto */
-  --text:        #0D2B3E;
+  --text:        #0B283D;
   --text-soft:   #46596A;
   --text-mute:   #78868F;
   --text-invert: #FFFFFF;
@@ -1591,3 +1591,44 @@ button, input, textarea, select {
 @media (max-width: 979px) {
   .br-desktop { display: none; }
 }
+
+/* Pie: datos legales en varias líneas y links visibles */
+.footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+.footer-bottom a { color: rgba(255,255,255,.7); text-decoration: underline; text-underline-offset: 2px; }
+.footer-bottom a:hover { color: #fff; }
+.form-legal a, .form-success a { color: inherit; text-decoration: underline; }
+
+/* ==================================================================
+   TRABAJOS REALIZADOS
+   =================================================================== */
+.works {
+  display: grid;
+  gap: clamp(1.2rem, .8rem + 1.5vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+}
+.work {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .25s var(--ease), transform .25s var(--ease);
+}
+.work:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.work-shot { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--cream); border-bottom: 1px solid var(--line); }
+.work-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform .4s var(--ease); }
+.work:hover .work-shot img { transform: scale(1.03); }
+.work-body { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: .75rem; flex: 1; }
+.work-body > p { margin: 0; color: var(--text-soft); font-size: var(--fs-sm); line-height: 1.6; }
+.work-head { display: flex; align-items: center; gap: .8rem; }
+.work-logo { width: 44px; height: 44px; border-radius: 11px; flex: none; }
+.work-head h3 { margin: 0; font-family: var(--font-serif); font-size: var(--fs-h3); color: var(--navy); }
+.work-type { margin: .1rem 0 0; font-size: var(--fs-xs); color: var(--green); font-weight: 600; letter-spacing: .02em; }
+.work-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.work-tags li { font-size: .74rem; font-weight: 600; color: var(--navy); background: var(--cream); border: 1px solid var(--line); padding: .2rem .6rem; border-radius: 999px; }
+.work-links { margin-top: auto !important; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1rem; }
+.work-links a { color: var(--navy); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--green); }
+.work-links a:hover { color: var(--green); }
+.work-note { font-size: var(--fs-xs); color: var(--text-mute); }

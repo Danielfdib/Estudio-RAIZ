@@ -13,10 +13,10 @@
          · la estructura usa stroke="currentColor"  →  atributo color
          · las hojas no declaran fill               →  atributo fill
        Variantes:
-         v1  fondo claro    #0D2B3E + #5A6B3F
+         v1  fondo claro    #0B283D + #555B37
          v2  fondo oscuro   #FFFFFF + #9BC9B5
          v3  favicon        trazos engrosados, legible a 32 px
-         v4  monocromo azul #0D2B3E (papelería, sellos, grabado)
+         v4  monocromo azul #0B283D (papelería, sellos, grabado)
        ================================================================== -->
 
   <defs>
@@ -96,16 +96,16 @@
 
   <!-- ================= v1 · FONDO CLARO ================= -->
   <g id="variante-1-fondo-claro">
-    <rect x="0" y="0" width="1000" height="1000" fill="#F2EFE7"/>
-    <use href="#v-estructura" color="#0D2B3E"/>
-    <use href="#v-hojas" fill="#5A6B3F"/>
+    <rect x="0" y="0" width="1000" height="1000" fill="#F9F6F1"/>
+    <use href="#v-estructura" color="#0B283D"/>
+    <use href="#v-hojas" fill="#555B37"/>
     <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
           font-size="34" letter-spacing="4" fill="#46596A">v1 · FONDO CLARO</text>
   </g>
 
   <!-- ================= v2 · FONDO OSCURO ================= -->
   <g id="variante-2-fondo-oscuro" transform="translate(1000 0)">
-    <rect x="0" y="0" width="1000" height="1000" fill="#0D2B3E"/>
+    <rect x="0" y="0" width="1000" height="1000" fill="#0B283D"/>
     <use href="#v-estructura" color="#FFFFFF"/>
     <use href="#v-hojas" fill="#9BC9B5"/>
     <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
@@ -114,9 +114,9 @@
 
   <!-- ================= v3 · FAVICON (simplificado) ================= -->
   <g id="variante-3-favicon" transform="translate(0 1120)">
-    <rect x="0" y="0" width="1000" height="1000" fill="#F2EFE7"/>
-    <use href="#v-estructura-fav" color="#0D2B3E"/>
-    <use href="#v-hojas-fav" fill="#5A6B3F"/>
+    <rect x="0" y="0" width="1000" height="1000" fill="#F9F6F1"/>
+    <use href="#v-estructura-fav" color="#0B283D"/>
+    <use href="#v-hojas-fav" fill="#555B37"/>
     <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
           font-size="34" letter-spacing="4" fill="#46596A">v3 · FAVICON</text>
   </g>
@@ -124,8 +124,8 @@
   <!-- ================= v4 · MONOCROMO AZUL ================= -->
   <g id="variante-4-monocromo" transform="translate(1000 1120)">
     <rect x="0" y="0" width="1000" height="1000" fill="#FFFFFF"/>
-    <use href="#v-estructura" color="#0D2B3E"/>
-    <use href="#v-hojas" fill="#0D2B3E"/>
+    <use href="#v-estructura" color="#0B283D"/>
+    <use href="#v-hojas" fill="#0B283D"/>
     <text x="500" y="1062" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
           font-size="34" letter-spacing="4" fill="#46596A">v4 · MONOCROMO AZUL</text>
   </g>
