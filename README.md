@@ -13,4 +13,4 @@ Todo lo publicable vive en `web/` (ver [web/README.md](web/README.md)). HTML, CS
 
 ---
 
-“Estudio Raíz” es una marca en trámite ante el INPI (Acta N.º 4780707). San Miguel de Tucumán, Argentina.
+Estudio Raíz · San Miguel de Tucumán, Argentina.
