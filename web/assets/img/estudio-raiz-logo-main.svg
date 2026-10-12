@@ -11,7 +11,7 @@
        viewBox ..... 1000 × 1000 (cuadrado perfecto)
        Área útil ... 100 a 900 (padding de 100 px en los cuatro lados)
        Simetría .... eje vertical en x = 500 · línea de tierra en y = 784
-       Paleta ...... #0D2B3E azul profundo · #5A6B3F verde oliva
+       Paleta ...... #0B283D azul profundo · #555B37 verde oliva
                      (manual de marca Estudio Raíz)
        Estilo ...... estructura solo con trazos, hojas rellenas,
                      stroke_linecap y stroke_linejoin redondeados
@@ -23,17 +23,17 @@
 
     <!-- Las raíces se funden del azul del tronco al verde de las hojas -->
     <linearGradient id="grad-raices" x1="0" y1="770" x2="0" y2="890" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0D2B3E"/>
-      <stop offset="1" stop-color="#5A6B3F"/>
+      <stop offset="0" stop-color="#0B283D"/>
+      <stop offset="1" stop-color="#555B37"/>
     </linearGradient>
 
     <!-- La línea de tierra se desvanece hacia ambos extremos -->
     <linearGradient id="grad-tierra" x1="106" y1="0" x2="894" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0"    stop-color="#5A6B3F" stop-opacity="0"/>
-      <stop offset="0.18" stop-color="#5A6B3F" stop-opacity="0.85"/>
-      <stop offset="0.5"  stop-color="#0D2B3E" stop-opacity="1"/>
-      <stop offset="0.82" stop-color="#5A6B3F" stop-opacity="0.85"/>
-      <stop offset="1"    stop-color="#5A6B3F" stop-opacity="0"/>
+      <stop offset="0"    stop-color="#555B37" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="#555B37" stop-opacity="0.85"/>
+      <stop offset="0.5"  stop-color="#0B283D" stop-opacity="1"/>
+      <stop offset="0.82" stop-color="#555B37" stop-opacity="0.85"/>
+      <stop offset="1"    stop-color="#555B37" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
@@ -62,7 +62,7 @@
 
     <!-- 3. TRONCO · dos trazos que convergen en punta hacia arriba,
          lo que produce el afinado natural sin recurrir a rellenos. -->
-    <g id="tronco" stroke="#0D2B3E" stroke-width="13">
+    <g id="tronco" stroke="#0B283D" stroke-width="13">
       <path d="M494 782 C 495 620, 498 420, 500 288"/>
       <path d="M506 782 C 505 620, 502 420, 500 288"/>
     </g>
@@ -70,14 +70,14 @@
     <!-- 4. RAMAS PRINCIPALES · el gesto que define la marca.
          Dos curvas espejadas que nacen junto al tronco, se abren
          hacia afuera y vuelven a cerrar sobre la línea de tierra. -->
-    <g id="ramas-principales" stroke="#0D2B3E" stroke-width="24">
+    <g id="ramas-principales" stroke="#0B283D" stroke-width="24">
       <path d="M478 366 C 390 382, 252 470, 252 612 C 252 702, 342 762, 452 780"/>
       <path d="M522 366 C 610 382, 748 470, 748 612 C 748 702, 658 762, 548 780"/>
     </g>
 
     <!-- 5. RAMAS SECUNDARIAS · tallos finos que nacen del tronco por
          encima de las ramas principales y sostienen el par superior. -->
-    <g id="ramas-secundarias" stroke="#0D2B3E" stroke-width="7">
+    <g id="ramas-secundarias" stroke="#0B283D" stroke-width="7">
       <path d="M500 348 C 468 344, 428 334, 386 320"/>
       <path d="M500 348 C 532 344, 572 334, 614 320"/>
     </g>
@@ -85,7 +85,7 @@
     <!-- 6. HOJAS · crecimiento y expansión.
          Siete hojas: una central sobre el tronco y tres pares
          simétricos, decrecientes hacia el exterior. -->
-    <g id="hojas" fill="#5A6B3F" stroke="none">
+    <g id="hojas" fill="#555B37" stroke="none">
       <use href="#hoja" transform="translate(500 278) rotate(-90) scale(1.72)"/>
 
       <use href="#hoja" transform="translate(386 320) rotate(220) scale(1.5)"/>

@@ -1,0 +1,3 @@
+# Solo se publica la carpeta web/: los documentos internos nunca se suben a Vercel.
+/*
+!/web

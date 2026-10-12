@@ -17,28 +17,12 @@
   /* ================================================================
      00. CONFIGURACIÓN
      ----------------------------------------------------------------
-     FORM_ENDPOINT: dejalo vacío ('') para que el formulario funcione
-     en modo demo (simula el envío y muestra el mensaje de éxito).
-
-     Cuando tengas el backend, pegá acá la URL. Funciona con:
-       · Zapier      → "Catch Hook" (https://hooks.zapier.com/hooks/catch/...)
-       · Make        → Custom Webhook
-       · Formspree   → https://formspree.io/f/xxxxxxx
-       · API propia  → cualquier endpoint que acepte POST + JSON
-
-     El payload enviado es:
-       {
-         nombre, email, telefono, empresa, mensaje,
-         marcaConsultada,   // lo que el usuario buscó arriba (si buscó)
-         origen,            // "landing-estudio-raiz"
-         enviadoEl,         // ISO 8601
-         pagina             // URL completa
-       }
+     El formulario no guarda datos en ningún servidor: arma el mensaje
+     y abre WhatsApp con el texto listo para enviar al número de abajo.
+     Para cambiar el destino, editá WHATSAPP (solo dígitos, con 549).
      ================================================================= */
   var CONFIG = {
-    FORM_ENDPOINT: '',
-    // Si tu endpoint espera form-data en vez de JSON, poné 'form'.
-    FORM_FORMAT: 'json',
+    WHATSAPP: '5492216823580',
     // Duración de la animación de búsqueda (ms).
     SEARCH_DELAY: 1500
   };
@@ -317,12 +301,8 @@
       msg: 'Contanos cómo te llamás.'
     },
     email: {
-      test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+      test: function (v) { return v.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
       msg: 'Revisá el email: parece que falta algo.'
-    },
-    telefono: {
-      test: function (v) { return v.replace(/[^\d]/g, '').length >= 8; },
-      msg: 'Ingresá un teléfono válido con característica.'
     },
     empresa: {
       test: function (v) { return v.trim().length >= 2; },
@@ -369,42 +349,22 @@
     return valid;
   };
 
-  var buildPayload = function () {
-    return {
-      nombre:          leadForm.elements.nombre.value.trim(),
-      email:           leadForm.elements.email.value.trim(),
-      telefono:        leadForm.elements.telefono.value.trim(),
-      empresa:         leadForm.elements.empresa.value.trim(),
-      mensaje:         leadForm.elements.mensaje.value.trim(),
-      marcaConsultada: leadForm.elements.marcaConsultada.value.trim(),
-      origen:          leadForm.elements.origen.value,
-      enviadoEl:       new Date().toISOString(),
-      pagina:          window.location.href
-    };
+  var buildMessage = function () {
+    var f = leadForm.elements;
+    var lines = [
+      'Hola, Estudio Raíz. Quiero agendar la reunión diagnóstico gratuita.',
+      '',
+      '• Nombre: ' + f.nombre.value.trim(),
+      '• Empresa o marca: ' + f.empresa.value.trim()
+    ];
+    if (f.email.value.trim()) lines.push('• Email: ' + f.email.value.trim());
+    if (f.marcaConsultada.value.trim()) lines.push('• Marca que consulté en la web: ' + f.marcaConsultada.value.trim());
+    if (f.mensaje.value.trim()) lines.push('', f.mensaje.value.trim());
+    return lines.join('\n');
   };
 
-  var sendLead = function (payload) {
-    // Modo demo: sin endpoint configurado.
-    if (!CONFIG.FORM_ENDPOINT) {
-      console.info('[Estudio Raíz] Lead capturado (modo demo, sin endpoint):', payload);
-      return new Promise(function (resolve) { window.setTimeout(resolve, 900); });
-    }
-
-    var options = { method: 'POST' };
-
-    if (CONFIG.FORM_FORMAT === 'form') {
-      var fd = new FormData();
-      Object.keys(payload).forEach(function (k) { fd.append(k, payload[k]); });
-      options.body = fd;
-    } else {
-      options.headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-      options.body = JSON.stringify(payload);
-    }
-
-    return fetch(CONFIG.FORM_ENDPOINT, options).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res;
-    });
+  var whatsappUrl = function (text) {
+    return 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent(text);
   };
 
   var showStatus = function (message) {
@@ -441,23 +401,15 @@
         return;
       }
 
-      leadSubmit.classList.add('is-loading');
-      $('.btn-label', leadSubmit).textContent = 'Enviando…';
+      // Se abre dentro del mismo clic para que el navegador no lo bloquee.
+      var url = whatsappUrl(buildMessage());
+      var waFallback = $('#waFallback');
+      if (waFallback) waFallback.href = url;
+      window.open(url, '_blank', 'noopener');
 
-      sendLead(buildPayload())
-        .then(function () {
-          leadForm.hidden = true;
-          formSuccess.hidden = false;
-          formSuccess.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
-        })
-        .catch(function (err) {
-          console.error('[Estudio Raíz] Error al enviar el formulario:', err);
-          showStatus('No pudimos enviar tu consulta. Probá de nuevo o escribinos a hola@estudioraiz.com.ar');
-        })
-        .finally(function () {
-          leadSubmit.classList.remove('is-loading');
-          $('.btn-label', leadSubmit).textContent = 'Agendar reunión diagnóstico gratuita';
-        });
+      leadForm.hidden = true;
+      formSuccess.hidden = false;
+      formSuccess.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
     });
   }
 

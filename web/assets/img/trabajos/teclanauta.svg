@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Teclanauta">
+  <rect width="512" height="512" rx="104" fill="#0B283D"/>
+  <circle cx="118" cy="120" r="6" fill="#F9F6F1" opacity=".7"/><circle cx="402" cy="96" r="5" fill="#F9F6F1" opacity=".55"/><circle cx="420" cy="214" r="4" fill="#F9F6F1" opacity=".45"/><circle cx="86" cy="250" r="4" fill="#F9F6F1" opacity=".45"/>
+  <!-- tecla -->
+  <rect x="116" y="248" width="280" height="190" rx="36" fill="#F9F6F1"/>
+  <rect x="116" y="248" width="280" height="160" rx="36" fill="#FFFFFF"/>
+  <rect x="136" y="266" width="240" height="122" rx="24" fill="none" stroke="#555B37" stroke-width="6" opacity=".35"/>
+  <text x="256" y="361" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="96" font-weight="700" fill="#0B283D">T</text>
+  <!-- cohete -->
+  <g transform="translate(300 128) rotate(35) scale(1.45)">
+    <path d="M0 -78 C 26 -50 30 -10 22 30 L -22 30 C -30 -10 -26 -50 0 -78 Z" fill="#F9F6F1"/>
+    <circle cx="0" cy="-22" r="11" fill="#0B283D"/>
+    <path d="M-22 10 L -40 40 L -18 30 Z M22 10 L 40 40 L 18 30 Z" fill="#7FA886"/>
+    <path d="M-12 32 Q 0 70 12 32 Z" fill="#C8643B"/>
+  </g>
+  <g transform="translate(420 440) rotate(-90) scale(.42)"><path d="M0 0 C 24 -25, 64 -27, 100 0 C 64 27, 24 25, 0 0 Z" fill="#7FA886"/></g>
+</svg>

@@ -6,9 +6,9 @@
  * tamaño y color del contexto y se puede animar con CSS.
  *
  * Paleta del manual de marca:
- *   #0D2B3E  azul profundo
- *   #5A6B3F  verde oliva
- *   #F2EFE7  crema
+ *   #0B283D  azul profundo
+ *   #555B37  verde oliva
+ *   #F9F6F1  crema
  *
  * Uso:
  *   <EstudioRaizLogo />                         // fondo claro, 120 px
@@ -20,10 +20,10 @@
  */
 
 const VARIANTS = {
-  light:   { stroke: '#0D2B3E', leaf: '#5A6B3F' },
+  light:   { stroke: '#0B283D', leaf: '#555B37' },
   dark:    { stroke: '#FFFFFF', leaf: '#9BC9B5' },
-  favicon: { stroke: '#0D2B3E', leaf: '#5A6B3F' },
-  mono:    { stroke: '#0D2B3E', leaf: '#0D2B3E' },
+  favicon: { stroke: '#0B283D', leaf: '#555B37' },
+  mono:    { stroke: '#0B283D', leaf: '#0B283D' },
 };
 
 // Trazado de la hoja lanceolada: nace en (0,0), apunta hacia +X, largo 100.

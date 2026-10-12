@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Tu vida en números">
+  <rect width="512" height="512" rx="104" fill="#0B283D"/>
+  <!-- reloj de arena -->
+  <path d="M168 96 H 344 M168 416 H 344" stroke="#F9F6F1" stroke-width="22" stroke-linecap="round"/>
+  <path d="M186 110 C 186 190 236 220 256 256 C 276 220 326 190 326 110 Z" fill="#F9F6F1" opacity=".18"/>
+  <path d="M186 402 C 186 322 236 292 256 256 C 276 292 326 322 326 402 Z" fill="#F9F6F1" opacity=".18"/>
+  <path d="M186 110 C 186 190 236 220 256 256 C 236 292 186 322 186 402 M326 110 C 326 190 276 220 256 256 C 276 292 326 322 326 402" fill="none" stroke="#F9F6F1" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M222 168 H 290 C 282 196 266 214 256 232 C 246 214 230 196 222 168 Z" fill="#C8643B"/>
+  <path d="M206 392 C 214 352 240 334 256 322 C 272 334 298 352 306 392 Z" fill="#7FA886"/>
+  <path d="M256 250 V 318" stroke="#C8643B" stroke-width="5" stroke-dasharray="3 10" stroke-linecap="round"/>
+  <g transform="translate(420 440) rotate(-90) scale(.42)"><path d="M0 0 C 24 -25, 64 -27, 100 0 C 64 27, 24 25, 0 0 Z" fill="#7FA886"/></g>
+</svg>

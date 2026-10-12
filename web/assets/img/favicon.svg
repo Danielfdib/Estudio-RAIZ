@@ -9,7 +9,7 @@
     <path id="f-hoja" d="M0 0 C 24 -25, 64 -27, 100 0 C 64 27, 24 25, 0 0 Z"/>
   </defs>
 
-  <rect width="1000" height="1000" rx="190" fill="#0D2B3E"/>
+  <rect width="1000" height="1000" rx="190" fill="#0B283D"/>
 
   <g transform="translate(500 512) scale(0.82) translate(-500 -512)">
     <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
