@@ -98,7 +98,7 @@ o cualquier API propia que acepte `POST`.
   "marcaConsultada": "Consultorio Aurora",
   "origen": "landing-estudio-raiz",
   "enviadoEl": "2026-08-07T14:32:10.000Z",
-  "pagina": "https://estudioraiz.com.ar/"
+  "pagina": "https://estudioraíz.com.ar/"
 }
 ```
 
@@ -176,7 +176,7 @@ de romper en silencio — pero la dependencia existe y conviene tenerla presente
 | `formato` | `csv` para descargar la planilla | JSON |
 
 ```bash
-curl "https://estudioraiz.com.ar/api/marcas?q=raiz&clase=35,41&vigentes=1"
+curl "https://estudioraíz.com.ar/api/marcas?q=raiz&clase=35,41&vigentes=1"
 ```
 
 ### Cómo compensa que la búsqueda del INPI sea literal
@@ -423,12 +423,11 @@ Estos valores son **provisorios** y están repetidos en varios lugares:
 
 | Dato | Valor actual | Dónde |
 |---|---|---|
-| Email | `hola@estudioraiz.com.ar` | footer, JSON-LD, mensaje de error del form |
-| WhatsApp / teléfono | `+54 9 381 000 0000` (`wa.me/5493810000000`) | footer ×2, JSON-LD |
+| Email | `hola@estudioraíz.com.ar` | footer, JSON-LD, mensaje de error del form |
 | Instagram | `instagram.com/estudioraiz` | footer, JSON-LD |
 | LinkedIn | `linkedin.com/company/estudioraiz` | footer, JSON-LD |
-| Dominio | `https://estudioraiz.com.ar/` | canonical, Open Graph, JSON-LD |
-| Ubicación | "Tucumán, Argentina" | footer, JSON-LD |
+| Dominio | `https://estudioraíz.com.ar/` | canonical, Open Graph, JSON-LD |
+| Ubicación | "Argentina" | footer, JSON-LD |
 | Horario | "Lunes a viernes, 15 a 19 hs" | footer |
 
 `assets/img/og-image.png` (1200×630) ya está generado a partir del logo. Si más

@@ -18,11 +18,10 @@
      00. CONFIGURACIÓN
      ----------------------------------------------------------------
      El formulario no guarda datos en ningún servidor: arma el mensaje
-     y abre WhatsApp con el texto listo para enviar al número de abajo.
-     Para cambiar el destino, editá WHATSAPP (solo dígitos, con 549).
+     y abre el correo de la persona con el texto listo para enviar a EMAIL.
      ================================================================= */
   var CONFIG = {
-    WHATSAPP: '5493810000000',
+    EMAIL: 'daniel.franco.dib@gmail.com',
     // Duración de la animación de búsqueda (ms).
     SEARCH_DELAY: 1500
   };
@@ -363,8 +362,9 @@
     return lines.join('\n');
   };
 
-  var whatsappUrl = function (text) {
-    return 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent(text);
+  var mailUrl = function (text) {
+    var subject = 'Consulta desde la web de Estudio Raíz';
+    return 'mailto:' + CONFIG.EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
   };
 
   var showStatus = function (message) {
@@ -401,11 +401,11 @@
         return;
       }
 
-      // Se abre dentro del mismo clic para que el navegador no lo bloquee.
-      var url = whatsappUrl(buildMessage());
-      var waFallback = $('#waFallback');
-      if (waFallback) waFallback.href = url;
-      window.open(url, '_blank', 'noopener');
+      // Se abre dentro del mismo clic: un mailto abre la aplicación de correo sin salir de la página.
+      var url = mailUrl(buildMessage());
+      var mailFallback = $('#mailFallback');
+      if (mailFallback) mailFallback.href = url;
+      window.location.href = url;
 
       leadForm.hidden = true;
       formSuccess.hidden = false;
